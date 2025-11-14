@@ -1,0 +1,14 @@
+
+.login-form{
+    width: 500px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.login-form input{
+    display: block;
+}
+
+div[role="alert"]{
+    margin-bottom: 10px;
+}
