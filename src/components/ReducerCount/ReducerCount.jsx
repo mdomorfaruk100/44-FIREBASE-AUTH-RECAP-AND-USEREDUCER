@@ -3,26 +3,30 @@ import { useReducer, useState } from "react";
 const initialState = { count: 0 };
 
 const reducer = (state, action) => {
-    if (action.type === 'increment') {
-        const newState = {...state, count: state.count + 1};
-        return newState;
+    console.log(state, action);
+    switch (action.type) {
+        case "INCREMENT":
+            return { count: state.count + 1 };
+        case "DECREMENT":
+            return { count: state.count - 1 };
+        default:
+            return state;
     }
-    return state;
 }
 
 const ReducerCount = () => {
     const [count, setCount] = useState(0);
-
     const [state, dispatch] = useReducer(reducer, initialState);
-    const handleClick = () => {
-        dispatch({ type: 'increment', payload: 'Hello' });
-        setCount(count + 1);
+    const buttonStyle = {
+        background: 'black',
+        color: 'white',
+        marginRight: '16px',
     }
-    console.log('re render', count);
     return (
         <div>
-            <button onClick={handleClick}>Increase</button>
-            <h1>This is Reducer Count: {state.count} | {count}</h1>
+            <h1>This is Reducer Count: {state.count}</h1>
+            <button style={buttonStyle} onClick={() => dispatch({ type: "INCREMENT" })}>Increase</button>
+            <button style={buttonStyle} onClick={() => dispatch({ type: "DECREMENT" })}>Decrement</button>
         </div>
     );
 };

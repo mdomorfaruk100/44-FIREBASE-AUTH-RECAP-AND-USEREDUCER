@@ -1,17 +1,29 @@
-# 44-7 a simple introduction of useReducer 
+# 44-8 use useReducer for a simple case
 
-## useReducer is a hook from react. it's first param is reducer callback function. second param is initial state. This hook returns currentState and dispatch method as a array. we also declear initial state and reducer function outside of component function.
+## action type will be in uppercase
+## action is a object with type and payload property. payload is option. if want to send data then use payload.
 
-## reducer callback function has 2 args. 1st is current state and 2nd is dispatch action. we return a updated state form this function.
-
-### Action is used to update state on redux store. It's a object with type and payload. in type we will give action type. in payload we will give any data to reducer.
-### When we dispatch a action when the action call the reducer function and reducer function change the state according action. and return the updated state. 
+## dispatch method is used to send action to reducer. we need to pass action as param of dispatch.
 
 ### ==> import {useReducer} from 'react';
 ### ==> const initialState = {count: 0};
 ### ==> const reducer = (state, action) => {
-
+### ==>    switch(action.type){
+### ==>    case "INCREMENT":
+### ==>        return {count: state.count + 1};
+### ==>    case "DECREMENT":
+### ==>        return {count: state.count - 1};
+### ==>    default:
+### ==>        return state;
+### ==> }
 ### ==> }
 ### ==> const ReducerCount = () => {
 ### ==>    const [state, dispatch] = useReducer(reducer, initialState);
+### ==>     return (
+### ==>     <div>
+### ==>        <h1>count: {state.count}</h1>
+### ==>        <button onClick={()=>dispatch({type: 'INCREMENT'})}>Increment</button>
+### ==>        <button onClick={()=>dispatch({type: 'DECREMENT'})}>Decrement</button>
+### ==>    </div>
+### ==> )
 ### ==> }
